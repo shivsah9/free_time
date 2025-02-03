@@ -29,6 +29,7 @@ class RiddleRepo {
           RiddlesResponse.fromMap(res.data[0] as Map<String, dynamic>);
       return reponse;
     } catch (e) {
+     
       return null;
     }
   }

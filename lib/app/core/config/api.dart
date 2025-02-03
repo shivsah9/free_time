@@ -81,10 +81,10 @@ class Api {
     if (addAuthInterceptor) {
       dio.interceptors.add(AuthInterceptor(dio, authToken: _token));
     }
-    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
-        HttpClient()
-          ..badCertificateCallback =
-              (X509Certificate cert, String host, int port) => true;
+    // (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+    //     HttpClient()
+    //       ..badCertificateCallback =
+    //           (X509Certificate cert, String host, int port) => true;
     // print("QUERY PARAMS=>${queryParameters}");
     return await dio.get((baseUrl ?? dio.options.baseUrl) + path,
         onReceiveProgress: onReceiveProgress,

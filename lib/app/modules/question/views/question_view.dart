@@ -18,15 +18,15 @@ class QuestionView extends GetView<QuestionController> {
         width: double.maxFinite,
         child: Column(
           children: [
-            Text(
-              'Question',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-            ),
+            Obx(() => Text(
+                  controller.riddlesResult.value.data?.question ?? 'Loading...',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                )),
             Obx(
               () => Visibility(
                 visible: !controller.isHidden.value,
                 child: Text(
-                  'Answer',
+                  controller.riddlesResult.value.data?.answer ?? 'Loading...',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
                 ),
               ),
@@ -41,7 +41,9 @@ class QuestionView extends GetView<QuestionController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.getRiddlesResult();
+        },
         child: Icon(Icons.refresh_rounded),
       ),
     );
